@@ -1,0 +1,1256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sujevan Ravikumar — Filmmaker & Creative</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg: #0D0C0A;
+  --surface: #141310;
+  --surface2: #1A1916;
+  --ink: #F2EDE6;
+  --muted: #6B6560;
+  --subtle: #2A2825;
+  --accent: #C4965A;
+  --accent2: #E8B87A;
+  --border: #242220;
+  --serif: 'Cormorant Garamond', Georgia, serif;
+  --sans: 'DM Sans', sans-serif;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--sans);
+  background: var(--bg);
+  color: var(--ink);
+  font-size: 15px;
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+
+/* ── CURSOR ── */
+*, *::before, *::after { cursor: none !important; }
+#cursor {
+  position: fixed;
+  width: 8px; height: 8px;
+  background: var(--accent);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  transition: transform 0.1s, background 0.2s;
+}
+#cursor-ring {
+  position: fixed;
+  width: 32px; height: 32px;
+  border: 1px solid rgba(196,150,90,0.4);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9998;
+  transform: translate(-50%, -50%);
+  transition: all 0.15s ease;
+}
+body:has(a:hover) #cursor-ring,
+body:has(button:hover) #cursor-ring {
+  width: 48px; height: 48px;
+  border-color: var(--accent);
+}
+
+/* ── NAV ── */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 4rem;
+  background: rgba(13,12,10,0.85);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+}
+
+.nav-logo {
+  font-family: var(--serif);
+  font-size: 1.1rem;
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.nav-links {
+  display: flex;
+  gap: 2.5rem;
+  list-style: none;
+}
+
+.nav-links a {
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  text-decoration: none;
+  transition: color 0.2s;
+  position: relative;
+}
+
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -3px; left: 0; right: 0;
+  height: 1px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+}
+
+.nav-links a:hover { color: var(--ink); }
+.nav-links a:hover::after { transform: scaleX(1); }
+
+/* ── HERO ── */
+#hero {
+  min-height: 100vh;
+  display: grid;
+  grid-template-rows: 1fr auto;
+  padding: 10rem 4rem 5rem;
+  position: relative;
+  border-bottom: 1px solid var(--border);
+  overflow: hidden;
+}
+
+.hero-bg-text {
+  position: absolute;
+  bottom: -2rem;
+  left: -1rem;
+  font-family: var(--serif);
+  font-size: 28vw;
+  font-weight: 300;
+  line-height: 1;
+  color: transparent;
+  -webkit-text-stroke: 1px var(--border);
+  pointer-events: none;
+  user-select: none;
+  white-space: nowrap;
+}
+
+.hero-top {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.hero-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 10px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 2rem;
+}
+
+.hero-tag::before {
+  content: '';
+  display: block;
+  width: 20px; height: 1px;
+  background: var(--accent);
+}
+
+.hero-name {
+  font-family: var(--serif);
+  font-size: clamp(5rem, 12vw, 11rem);
+  font-weight: 300;
+  line-height: 0.88;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  margin-bottom: 3rem;
+}
+
+.hero-name em {
+  font-style: italic;
+  color: var(--accent);
+  display: block;
+}
+
+.hero-bottom {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 2rem;
+  align-items: end;
+  padding-top: 3rem;
+  border-top: 1px solid var(--border);
+}
+
+.hero-desc {
+  grid-column: 1 / 3;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.9;
+  max-width: 500px;
+}
+
+.hero-cta {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 1rem;
+}
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.75rem 1.75rem;
+  background: var(--accent);
+  color: var(--bg);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  text-decoration: none;
+  font-family: var(--sans);
+  font-weight: 500;
+  transition: background 0.2s;
+}
+
+.btn-primary:hover { background: var(--accent2); }
+
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.75rem 1.75rem;
+  border: 1px solid var(--subtle);
+  color: var(--muted);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  text-decoration: none;
+  font-family: var(--sans);
+  transition: border-color 0.2s, color 0.2s;
+}
+
+.btn-ghost:hover { border-color: var(--muted); color: var(--ink); }
+
+/* ── SECTIONS ── */
+section { padding: 7rem 4rem; }
+
+.section-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 10px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 2rem;
+}
+
+.section-eyebrow::before {
+  content: '';
+  display: block;
+  width: 20px; height: 1px;
+  background: var(--accent);
+}
+
+.section-heading {
+  font-family: var(--serif);
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  font-weight: 300;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  margin-bottom: 3rem;
+}
+
+.section-heading em { font-style: italic; color: var(--accent); }
+
+/* ── ABOUT ── */
+#about {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 6rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.about-text {
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.95;
+  margin-bottom: 1.5rem;
+}
+
+.skills-section { margin-top: 3rem; }
+
+.skills-group { margin-bottom: 1.75rem; }
+
+.skills-group-label {
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.skills-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+
+.tag {
+  font-size: 11px;
+  padding: 5px 12px;
+  border: 1px solid var(--border);
+  color: var(--muted);
+  letter-spacing: 0.04em;
+  transition: border-color 0.2s, color 0.2s;
+}
+
+.tag:hover { border-color: var(--accent); color: var(--accent); }
+
+.about-right { padding-top: 5rem; }
+
+.stat-block {
+  padding: 2rem 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.stat-block:first-child { border-top: 1px solid var(--border); }
+
+.stat-num {
+  font-family: var(--serif);
+  font-size: 3.5rem;
+  font-weight: 300;
+  color: var(--ink);
+  line-height: 1;
+  margin-bottom: 0.3rem;
+}
+
+.stat-label { font-size: 11px; letter-spacing: 0.1em; color: var(--muted); text-transform: uppercase; }
+
+/* ── FILMS ── */
+#films { border-bottom: 1px solid var(--border); }
+
+.film-entry {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 4rem;
+  align-items: center;
+  padding: 4rem 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.film-entry:last-child { border-bottom: none; padding-bottom: 0; }
+.film-entry:first-child { padding-top: 0; }
+
+.film-entry-reverse {
+  grid-template-columns: 1fr 1.3fr;
+}
+
+.film-entry-reverse .film-embed { order: 2; }
+.film-entry-reverse .film-info { order: 1; }
+
+.film-embed {
+  position: relative;
+  aspect-ratio: 16/9;
+  overflow: hidden;
+  background: var(--surface);
+}
+
+.film-embed iframe {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+}
+
+.film-num {
+  font-family: var(--serif);
+  font-size: 0.75rem;
+  color: var(--border);
+  margin-bottom: 2rem;
+  letter-spacing: 0.1em;
+}
+
+.film-title {
+  font-family: var(--serif);
+  font-size: clamp(1.8rem, 3vw, 2.8rem);
+  font-weight: 300;
+  line-height: 1.15;
+  margin-bottom: 0.5rem;
+  letter-spacing: -0.01em;
+}
+
+.film-role {
+  font-size: 11px;
+  color: var(--accent);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 1.25rem;
+}
+
+.film-desc {
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.85;
+}
+
+/* ── SOCIAL ── */
+#social { border-bottom: 1px solid var(--border); }
+
+.social-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  background: var(--border);
+}
+
+.social-card {
+  background: var(--surface);
+  overflow: hidden;
+}
+
+.social-placeholder {
+  aspect-ratio: 16/9;
+  background: var(--surface2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.social-placeholder-label {
+  font-size: 10px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.social-card-info {
+  padding: 2rem 2.5rem 2.5rem;
+}
+
+.social-card-num {
+  font-family: var(--serif);
+  font-size: 0.75rem;
+  color: var(--border);
+  margin-bottom: 1.5rem;
+}
+
+.social-card-title {
+  font-family: var(--serif);
+  font-size: 1.6rem;
+  font-weight: 300;
+  margin-bottom: 0.4rem;
+}
+
+.social-card-role {
+  font-size: 11px;
+  color: var(--accent);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 0.75rem;
+}
+
+.social-card-desc {
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.8;
+}
+
+/* ── VFX ── */
+#vfx { border-bottom: 1px solid var(--border); }
+
+.vfx-intro {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  margin-bottom: 4rem;
+  padding-bottom: 4rem;
+  border-bottom: 1px solid var(--border);
+  align-items: center;
+}
+
+.vfx-project { padding: 4rem 0; border-bottom: 1px solid var(--border); }
+.vfx-project:last-child { border-bottom: none; padding-bottom: 0; }
+
+.vfx-project-meta { margin-bottom: 2rem; }
+
+.blender-gallery {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr;
+  gap: 3px;
+}
+
+.blender-img-main {
+  position: relative;
+  aspect-ratio: 16/9;
+  overflow: hidden;
+  cursor: pointer;
+  background: var(--surface);
+}
+
+.blender-img-side {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.blender-img-thumb {
+  position: relative;
+  flex: 1;
+  overflow: hidden;
+  cursor: pointer;
+  background: var(--surface);
+  min-height: 120px;
+}
+
+.blender-img-main img,
+.blender-img-thumb img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s ease, filter 0.5s ease;
+  filter: brightness(0.85);
+}
+
+.img-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.3s;
+}
+
+.img-overlay span {
+  font-size: 10px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: white;
+  opacity: 0;
+  transition: opacity 0.3s;
+  border: 1px solid rgba(255,255,255,0.4);
+  padding: 8px 20px;
+}
+
+.blender-img-main:hover .img-overlay,
+.blender-img-thumb:hover .img-overlay { background: rgba(0,0,0,0.4); }
+
+.blender-img-main:hover .img-overlay span,
+.blender-img-thumb:hover .img-overlay span { opacity: 1; }
+
+.blender-img-main:hover img,
+.blender-img-thumb:hover img { transform: scale(1.05); filter: brightness(0.7); }
+
+/* ── RESUME ── */
+#resume { border-bottom: 1px solid var(--border); }
+
+.resume-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5rem;
+  margin-top: 3rem;
+}
+
+.resume-col-label {
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.resume-entry {
+  padding: 1.75rem 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.resume-entry-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 0.4rem;
+}
+
+.resume-entry-title {
+  font-family: var(--serif);
+  font-size: 1.15rem;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
+
+.resume-entry-year {
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: 0.1em;
+  white-space: nowrap;
+  padding-top: 0.3rem;
+  text-transform: uppercase;
+}
+
+.resume-entry-org {
+  font-size: 11px;
+  color: var(--accent);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 0.6rem;
+}
+
+.resume-entry-desc {
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.75;
+}
+
+.resume-download {
+  margin-top: 4rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink);
+  text-decoration: none;
+  border-bottom: 1px solid var(--subtle);
+  padding-bottom: 3px;
+  transition: color 0.2s, border-color 0.2s;
+}
+
+.resume-download:hover { color: var(--accent); border-color: var(--accent); }
+
+/* ── CONTACT ── */
+#contact {
+  text-align: center;
+  padding-top: 8rem;
+  padding-bottom: 8rem;
+}
+
+.contact-eyebrow {
+  justify-content: center;
+}
+
+.contact-heading {
+  font-family: var(--serif);
+  font-size: clamp(3.5rem, 8vw, 8rem);
+  font-weight: 300;
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+  margin: 2rem 0 3.5rem;
+}
+
+.contact-heading em { font-style: italic; color: var(--accent); display: block; }
+
+.contact-email {
+  font-family: var(--serif);
+  font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+  font-weight: 300;
+  color: var(--ink);
+  text-decoration: none;
+  border-bottom: 1px solid var(--subtle);
+  padding-bottom: 4px;
+  transition: color 0.2s, border-color 0.2s;
+  letter-spacing: -0.01em;
+}
+
+.contact-email:hover { color: var(--accent); border-color: var(--accent); }
+
+.contact-links {
+  display: flex;
+  justify-content: center;
+  gap: 3rem;
+  margin-top: 4rem;
+  flex-wrap: wrap;
+}
+
+.contact-link {
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  text-decoration: none;
+  transition: color 0.2s;
+  position: relative;
+}
+
+.contact-link::after {
+  content: '';
+  position: absolute;
+  bottom: -3px; left: 0; right: 0;
+  height: 1px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transition: transform 0.3s;
+}
+
+.contact-link:hover { color: var(--accent); }
+.contact-link:hover::after { transform: scaleX(1); }
+
+/* ── FOOTER ── */
+footer {
+  padding: 2rem 4rem;
+  border-top: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+}
+
+/* ── LIGHTBOX ── */
+.lightbox {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  background: rgba(5,5,4,0.97);
+  align-items: center;
+  justify-content: center;
+}
+
+.lightbox-inner {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 90vw;
+  max-width: 1200px;
+}
+
+.lightbox-img {
+  max-width: 100%;
+  max-height: 85vh;
+  object-fit: contain;
+}
+
+.lightbox-close {
+  position: fixed;
+  top: 2rem; right: 2rem;
+  background: none;
+  border: 1px solid rgba(255,255,255,0.15);
+  color: white;
+  width: 42px; height: 42px;
+  border-radius: 50%;
+  font-size: 1rem;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: border-color 0.2s, color 0.2s;
+  font-family: var(--sans);
+}
+
+.lightbox-close:hover { border-color: var(--accent); color: var(--accent); }
+
+.lightbox-prev, .lightbox-next {
+  position: absolute;
+  top: 50%; transform: translateY(-50%);
+  background: none;
+  border: 1px solid rgba(255,255,255,0.15);
+  color: white;
+  width: 48px; height: 48px;
+  border-radius: 50%;
+  font-size: 1.5rem;
+  display: flex; align-items: center; justify-content: center;
+  transition: border-color 0.2s, color 0.2s;
+  z-index: 10;
+  font-family: var(--sans);
+}
+
+.lightbox-prev { left: -4rem; }
+.lightbox-next { right: -4rem; }
+.lightbox-prev:hover, .lightbox-next:hover { border-color: var(--accent); color: var(--accent); }
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.fade-up { animation: fadeUp 1s ease forwards; opacity: 0; }
+.delay-1 { animation-delay: 0.2s; }
+.delay-2 { animation-delay: 0.4s; }
+.delay-3 { animation-delay: 0.6s; }
+
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+[data-reveal].revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 900px) {
+  nav { padding: 1rem 1.5rem; }
+  .nav-links { gap: 1.5rem; }
+  section { padding: 5rem 1.5rem; }
+  #hero { padding: 9rem 1.5rem 4rem; }
+  .hero-name { font-size: clamp(3.5rem, 15vw, 6rem); }
+  .hero-bottom { grid-template-columns: 1fr; gap: 1.5rem; }
+  .hero-cta { justify-content: flex-start; }
+  #about { grid-template-columns: 1fr; gap: 3rem; }
+  .film-entry, .film-entry-reverse { grid-template-columns: 1fr; gap: 2rem; }
+  .film-entry-reverse .film-embed { order: 1; }
+  .film-entry-reverse .film-info { order: 2; }
+  .vfx-intro { grid-template-columns: 1fr; gap: 2rem; }
+  .social-grid { grid-template-columns: 1fr; }
+  .blender-gallery { grid-template-columns: 1fr; }
+  .blender-img-side { flex-direction: row; }
+  .resume-grid { grid-template-columns: 1fr; gap: 3rem; }
+  .hero-bg-text { display: none; }
+  .lightbox-prev { left: 0.5rem; }
+  .lightbox-next { right: 0.5rem; }
+  footer { flex-direction: column; gap: 0.5rem; text-align: center; }
+  #cursor, #cursor-ring { display: none; }
+}
+</style>
+</head>
+<body>
+
+<div id="cursor"></div>
+<div id="cursor-ring"></div>
+
+<nav>
+  <a href="#hero" class="nav-logo">Sujevan Ravikumar</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#films">Films</a></li>
+    <li><a href="#social">Social</a></li>
+    <li><a href="#vfx">VFX</a></li>
+    <li><a href="#resume">Résumé</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg-text">SR</div>
+  <div class="hero-top">
+    <p class="hero-tag fade-up">Filmmaker · Art Director · South London</p>
+    <h1 class="hero-name fade-up delay-1">
+      Sujevan<br><em>Ravikumar</em>
+    </h1>
+  </div>
+  <div class="hero-bottom fade-up delay-2">
+    <p class="hero-desc">A Tamil creative from Croydon — telling people's stories so they can be seen across the world. 5+ years across film, VFX, and visual storytelling.</p>
+    <div class="hero-cta">
+      <a href="#films" class="btn-primary">View Work</a>
+      <a href="#contact" class="btn-ghost">Get in Touch</a>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-left" data-reveal>
+    <p class="section-eyebrow">About</p>
+    <h2 class="section-heading">Telling stories that<br><em>need to be seen</em></h2>
+    <p class="about-text">I'm a 21-year-old Tamil creative from South London, currently completing my BA in Art Direction and VFX at the University of the Arts London. I've always been passionate about telling people's stories — putting faces, voices and communities on screen for the world to see.</p>
+    <p class="about-text">With over 5 years of hands-on filmmaking experience, I've worked across the full production pipeline — from concept and storyboarding through to on-set direction, editing, colour grading and VFX. Calm under pressure, collaborative by nature, and driven to create work that genuinely connects.</p>
+    <div class="skills-section">
+      <div class="skills-group">
+        <p class="skills-group-label">Software</p>
+        <div class="skills-tags">
+          <span class="tag">Adobe Premiere Pro</span>
+          <span class="tag">DaVinci Resolve</span>
+          <span class="tag">Adobe Photoshop</span>
+          <span class="tag">Blender</span>
+          <span class="tag">SketchUp</span>
+          <span class="tag">CapCut</span>
+        </div>
+      </div>
+      <div class="skills-group">
+        <p class="skills-group-label">Production</p>
+        <div class="skills-tags">
+          <span class="tag">Direction</span>
+          <span class="tag">Camera Operation</span>
+          <span class="tag">Videography</span>
+          <span class="tag">Photography</span>
+          <span class="tag">Storyboarding</span>
+          <span class="tag">Colour Grading</span>
+          <span class="tag">Shot Composition</span>
+          <span class="tag">VFX Compositing</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="about-right" data-reveal>
+    <div class="stat-block">
+      <p class="stat-num">5+</p>
+      <p class="stat-label">Years of filmmaking</p>
+    </div>
+    <div class="stat-block">
+      <p class="stat-num">UAL</p>
+      <p class="stat-label">BA Art Direction & VFX</p>
+    </div>
+    <div class="stat-block">
+      <p class="stat-num">2</p>
+      <p class="stat-label">Languages — English & Tamil</p>
+    </div>
+  </div>
+</section>
+
+<!-- FILMS -->
+<section id="films">
+  <p class="section-eyebrow" data-reveal>Film Work</p>
+  <h2 class="section-heading" data-reveal>Directed <em>Works</em></h2>
+
+  <!-- 01 The Brutal Spectacle Documentary -->
+  <div class="film-entry" data-reveal>
+    <div class="film-embed">
+      <iframe src="https://www.youtube.com/embed/DqRHD4Y1SMQ" title="The Brutal Spectacle Documentary" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+    <div class="film-info">
+      <p class="film-num">01 / 05</p>
+      <h3 class="film-title">The Brutal Spectacle</h3>
+      <p class="film-role">Director · Documentary</p>
+      <p class="film-desc">A documentary that goes beyond the surface of sport to examine what draws people into brutal, physical competition. Directed with an observational eye, the film captures raw, unfiltered moments — the discipline, sacrifice, and humanity behind the spectacle. An honest portrait of athletes and the world they inhabit.</p>
+    </div>
+  </div>
+
+  <!-- 02 Payanam -->
+  <div class="film-entry film-entry-reverse" data-reveal>
+    <div class="film-embed">
+      <iframe src="https://www.youtube.com/embed/5A29_p2OXWI" title="Payanam" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+    <div class="film-info">
+      <p class="film-num">02 / 05</p>
+      <h3 class="film-title">Payanam</h3>
+      <p class="film-role">Director · Short Film</p>
+      <p class="film-desc">Payanam comes from wanting to hold onto small moments that don't seem important until they're gone. The film centres on the relationship between two brothers and the quiet, everyday time they share — observed rather than staged, honest rather than constructed. Rooted in an observational filmmaking practice, it treats film as a visual journal, documenting life as it happens. The film doesn't try to explain its cultural details, but presents them as they are lived. At its heart, it's about memory, absence, and finding peace in what remains.</p>
+    </div>
+  </div>
+
+  <!-- 03 The Day She Wrote -->
+  <div class="film-entry" data-reveal>
+    <div class="film-embed">
+      <iframe src="https://www.youtube.com/embed/vZ5G6nbpoj4" title="The Day She Wrote" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+    <div class="film-info">
+      <p class="film-num">03 / 05</p>
+      <h3 class="film-title">The Day She Wrote</h3>
+      <p class="film-role">Director · Short Film</p>
+      <p class="film-desc">A narrative short film directed and produced independently — a quiet, intimate story told with visual care and intention. Showcasing the full scope of production from pre to post, from the first draft through to final cut.</p>
+    </div>
+  </div>
+
+  <!-- 04 Picture This -->
+  <div class="film-entry film-entry-reverse" data-reveal>
+    <div class="film-embed">
+      <iframe src="https://www.youtube.com/embed/uOAdlbbyMrU" title="Picture This" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+    <div class="film-info">
+      <p class="film-num">04 / 05</p>
+      <h3 class="film-title">Picture This</h3>
+      <p class="film-role">Director of Photography · Short Film</p>
+      <p class="film-desc">Served as Director of Photography — responsible for camera operation, shot composition, and the overall visual language across the full production. A collaboration that demonstrates the craft of working as a creative partner to bring another director's vision to life.</p>
+    </div>
+  </div>
+
+  <!-- 05 The Elephant Herd In My Room -->
+  <div class="film-entry" data-reveal>
+    <div class="film-embed">
+      <iframe src="https://www.youtube.com/embed/ijkCk0Mda7s" title="The Elephant Herd In My Room" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+    <div class="film-info">
+      <p class="film-num">05 / 05</p>
+      <h3 class="film-title">The Elephant Herd In My Room</h3>
+      <p class="film-role">Director · Animated Short Film · UAL</p>
+      <p class="film-desc">A fully animated short film directed from script to screen as part of a UAL-commissioned production. Led pre-production including treatment, storyboarding and scheduling, through to editing, sound and final delivery — coordinating a crew to a fixed deadline.</p>
+    </div>
+  </div>
+
+</section>
+
+<!-- SOCIAL MEDIA CONTENT -->
+<section id="social">
+  <p class="section-eyebrow" data-reveal>Content Creation</p>
+  <h2 class="section-heading" data-reveal>Social Media <em>Work</em></h2>
+  <div class="social-grid" data-reveal>
+    <div class="social-card">
+      <div class="social-placeholder">
+        <span class="social-placeholder-label">Content Coming Soon</span>
+      </div>
+      <div class="social-card-info">
+        <p class="social-card-num">01</p>
+        <h3 class="social-card-title">Bronx Boxing Gym</h3>
+        <p class="social-card-role">Filmmaker & Content Creator</p>
+        <p class="social-card-desc">Social media content production — photo and video assets for promotional and social use, building the gym's digital presence and athlete stories.</p>
+      </div>
+    </div>
+    <div class="social-card">
+      <div class="social-placeholder">
+        <span class="social-placeholder-label">Content Coming Soon</span>
+      </div>
+      <div class="social-card-info">
+        <p class="social-card-num">02</p>
+        <h3 class="social-card-title">Croydon Boxing Academy</h3>
+        <p class="social-card-role">Lead Filmmaker & Photographer</p>
+        <p class="social-card-desc">End-to-end content production — concept, shoot, edit, and deliver photo and video, growing the academy's digital presence and athlete narratives.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VFX & 3D -->
+<section id="vfx">
+  <p class="section-eyebrow" data-reveal>VFX & 3D</p>
+  <h2 class="section-heading" data-reveal>Blender & <em>Visual Effects</em></h2>
+
+  <!-- Monkey Man -->
+  <div class="film-entry" data-reveal>
+    <div class="film-embed">
+      <iframe src="https://www.youtube.com/embed/IFlX7eUz0PU" title="Monkey Man Scene Recreation" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+    <div class="film-info">
+      <p class="film-num">01</p>
+      <h3 class="film-title">Monkey Man Scene Recreation</h3>
+      <p class="film-role">VFX · Green Screen Compositing</p>
+      <p class="film-desc">A green screen scene recreation inspired by Monkey Man — compositing live footage against a digitally crafted environment. Demonstrates keying, colour matching, and seamless background integration.</p>
+    </div>
+  </div>
+
+  <!-- Bunker Barber Shop -->
+  <div class="vfx-project" data-reveal>
+    <div class="vfx-project-meta">
+      <p class="film-num">02</p>
+      <h3 class="film-title">Bunker Barber Shop</h3>
+      <p class="film-role">3D Environment · Blender Render</p>
+      <p class="film-desc" style="margin-bottom:2rem;">A fully realised alpine barber shop scene built in Blender — hand-crafted stone walls, Swiss flags, barber poles and a sweeping mountain backdrop. Showcasing detailed asset modelling, atmospheric lighting, volumetric fog, and photorealistic rendering.</p>
+    </div>
+    <div class="blender-gallery">
+      <div class="blender-img-main" onclick="openLightbox(0, 'bunker')">
+        <img src="PORTFOLIO/BB%201.png" alt="Bunker Barber Shop - Wide Shot">
+        <div class="img-overlay"><span>Expand</span></div>
+      </div>
+      <div class="blender-img-side">
+        <div class="blender-img-thumb" onclick="openLightbox(1, 'bunker')">
+          <img src="PORTFOLIO/BB%202.png" alt="Bunker Barber Shop - Close Up">
+          <div class="img-overlay"><span>Expand</span></div>
+        </div>
+        <div class="blender-img-thumb" onclick="openLightbox(2, 'bunker')">
+          <img src="PORTFOLIO/BB%203.png" alt="Bunker Barber Shop - Barber Pole">
+          <div class="img-overlay"><span>Expand</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tamil Welfare Bank -->
+  <div class="vfx-project" data-reveal>
+    <div class="vfx-project-meta">
+      <p class="film-num">03</p>
+      <h3 class="film-title">Tamil Welfare Bank</h3>
+      <p class="film-role">Art Direction & Production Design · SketchUp & Blender</p>
+      <p class="film-desc" style="margin-bottom:2rem; max-width: 700px;">Inspired by Frank Capra's <em>It's a Wonderful Life</em>, this project reimagines the iconic Bailey Bros. Building & Loan as a Tamil cultural institution — the Tamil Welfare Bank. Built entirely in SketchUp and rendered in Blender, the environment is a fully realised interior space layered with cultural authenticity: terracotta-tiled floors, carved wooden pillars, Tamil scripture on the walls, and warm ambient lighting that evokes the intimacy of South Indian community spaces. Alongside the 3D renders, the project includes full technical production design documentation — scaled floor plans, section drawings, and detailed close-ups of architectural elements — demonstrating a complete art direction pipeline from concept through to build-ready specifications.</p>
+    </div>
+    <div class="blender-gallery">
+      <div class="blender-img-main" onclick="openLightbox(0, 'tamil')">
+        <img src="PORTFOLIO/TWB%201.png" alt="Tamil Welfare Bank - Interior View 1">
+        <div class="img-overlay"><span>Expand</span></div>
+      </div>
+      <div class="blender-img-side">
+        <div class="blender-img-thumb" onclick="openLightbox(1, 'tamil')">
+          <img src="PORTFOLIO/TWB%202.png" alt="Tamil Welfare Bank - Interior View 2">
+          <div class="img-overlay"><span>Expand</span></div>
+        </div>
+        <div class="blender-img-thumb" onclick="openLightbox(2, 'tamil')">
+          <img src="PORTFOLIO/TWB%203.png" alt="Tamil Welfare Bank - Technical Drawings">
+          <div class="img-overlay"><span>Expand</span></div>
+        </div>
+      </div>
+    </div>
+    <!-- Secondary row for technical drawings -->
+    <div class="blender-gallery" style="margin-top: 3px;">
+      <div class="blender-img-main" onclick="openLightbox(3, 'tamil')">
+        <img src="PORTFOLIO/TWB%204.png" alt="Tamil Welfare Bank - Section Drawings">
+        <div class="img-overlay"><span>Expand</span></div>
+      </div>
+      <div class="blender-img-side">
+        <div class="blender-img-thumb" onclick="openLightbox(4, 'tamil')" style="flex:1;">
+          <img src="PORTFOLIO/TWB%205.png" alt="Tamil Welfare Bank - Floor Plan">
+          <div class="img-overlay"><span>Expand</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RESUME -->
+<section id="resume">
+  <p class="section-eyebrow" data-reveal>Résumé</p>
+  <h2 class="section-heading" data-reveal>Experience &amp; <em>Education</em></h2>
+  <div class="resume-grid" data-reveal>
+    <div>
+      <p class="resume-col-label">Experience</p>
+      <div class="resume-entry">
+        <div class="resume-entry-top">
+          <p class="resume-entry-title">Lead Filmmaker & Photographer</p>
+          <p class="resume-entry-year">Jun 2025 – Present</p>
+        </div>
+        <p class="resume-entry-org">Croydon Boxing Academy</p>
+        <p class="resume-entry-desc">Own end-to-end content production: concept, shoot, edit, and deliver photo and video assets for social and promotional use. Building long-term visual narratives around athletes.</p>
+      </div>
+      <div class="resume-entry">
+        <div class="resume-entry-top">
+          <p class="resume-entry-title">Director — Animated Short Film</p>
+          <p class="resume-entry-year">Nov 2024 – Feb 2025</p>
+        </div>
+        <p class="resume-entry-org">The Herds · UAL</p>
+        <p class="resume-entry-desc">Directed a fully animated short from script to screen. Led pre-production, coordinated a small crew, and delivered to a fixed deadline.</p>
+      </div>
+      <div class="resume-entry">
+        <div class="resume-entry-top">
+          <p class="resume-entry-title">Film & Media Teaching Assistant</p>
+          <p class="resume-entry-year">Jul – Aug 2022</p>
+        </div>
+        <p class="resume-entry-org">Ravens Wood School</p>
+        <p class="resume-entry-desc">Supported GCSE students with practical media coursework. Demonstrated equipment operation and gave constructive feedback on student productions.</p>
+      </div>
+    </div>
+    <div>
+      <p class="resume-col-label">Education</p>
+      <div class="resume-entry">
+        <div class="resume-entry-top">
+          <p class="resume-entry-title">BA Production Arts for Screen</p>
+          <p class="resume-entry-year">2023 – Present</p>
+        </div>
+        <p class="resume-entry-org">University of the Arts London</p>
+        <p class="resume-entry-desc">Art Direction and VFX · Year 3. Experienced across the full pipeline — storyboarding, direction, editing, colour grading, and VFX.</p>
+      </div>
+      <div class="resume-entry">
+        <div class="resume-entry-top">
+          <p class="resume-entry-title">A Levels</p>
+          <p class="resume-entry-year">2023</p>
+        </div>
+        <p class="resume-entry-org">Ravens Wood School</p>
+        <p class="resume-entry-desc">Film Studies (A) · Design Technology (A) · Geography (B)</p>
+      </div>
+      <div class="resume-entry">
+        <div class="resume-entry-top">
+          <p class="resume-entry-title">Academy of Media & Film — Leader</p>
+          <p class="resume-entry-year">2022 – 2023</p>
+        </div>
+        <p class="resume-entry-org">Ravens Wood School</p>
+        <p class="resume-entry-desc">Organised screenings, workshops, and student-led productions within the school's media programme.</p>
+      </div>
+    </div>
+  </div>
+  <a href="cv.pdf" class="resume-download">Download full CV →</a>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <p class="section-eyebrow contact-eyebrow" data-reveal>Get in touch</p>
+  <h2 class="contact-heading" data-reveal>
+    Let's make<br><em>something together</em>
+  </h2>
+  <a href="mailto:sujkumar204@gmail.com" class="contact-email" data-reveal>sujkumar204@gmail.com</a>
+  <div class="contact-links" data-reveal>
+    <a href="tel:07404524402" class="contact-link">07404 524 402</a>
+    <a href="https://www.instagram.com/suj.films" target="_blank" class="contact-link">Instagram</a>
+    <a href="https://www.linkedin.com/in/sujevan-r-a75884222" target="_blank" class="contact-link">LinkedIn</a>
+    <a href="https://www.youtube.com/@suj.films" target="_blank" class="contact-link">YouTube</a>
+  </div>
+</section>
+
+<footer>
+  <span>© 2025 Sujevan Ravikumar</span>
+  <span>South London · UAL</span>
+</footer>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <div class="lightbox-inner">
+    <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+    <button class="lightbox-prev" onclick="event.stopPropagation(); shiftLightbox(-1)">‹</button>
+    <img class="lightbox-img" id="lightbox-img" src="" alt="">
+    <button class="lightbox-next" onclick="event.stopPropagation(); shiftLightbox(1)">›</button>
+  </div>
+</div>
+
+<script>
+  // Custom cursor
+  const cursor = document.getElementById('cursor');
+  const ring = document.getElementById('cursor-ring');
+  let mx = 0, my = 0, rx = 0, ry = 0;
+  document.addEventListener('mousemove', e => {
+    mx = e.clientX; my = e.clientY;
+    cursor.style.left = mx + 'px';
+    cursor.style.top = my + 'px';
+  });
+  function animateRing() {
+    rx += (mx - rx) * 0.12;
+    ry += (my - ry) * 0.12;
+    ring.style.left = rx + 'px';
+    ring.style.top = ry + 'px';
+    requestAnimationFrame(animateRing);
+  }
+  animateRing();
+
+  // Scroll reveal
+  const reveals = document.querySelectorAll('[data-reveal]');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('revealed'), i * 80);
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(el => observer.observe(el));
+
+  // Lightbox
+  const galleries = {
+    bunker: [
+      "PORTFOLIO/BB%201.png",
+      "PORTFOLIO/BB%202.png",
+      "PORTFOLIO/BB%203.png"
+    ],
+    tamil: [
+      "PORTFOLIO/TWB%201.png",
+      "PORTFOLIO/TWB%202.png",
+      "PORTFOLIO/TWB%203.png",
+      "PORTFOLIO/TWB%204.png",
+      "PORTFOLIO/TWB%205.png"
+    ]
+  };
+  let currentGallery = [], currentIndex = 0;
+
+  function openLightbox(index, gallery) {
+    currentGallery = galleries[gallery];
+    currentIndex = index;
+    document.getElementById('lightbox-img').src = currentGallery[currentIndex];
+    document.getElementById('lightbox').style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeLightbox() {
+    document.getElementById('lightbox').style.display = 'none';
+    document.body.style.overflow = '';
+  }
+
+  function shiftLightbox(dir) {
+    currentIndex = (currentIndex + dir + currentGallery.length) % currentGallery.length;
+    document.getElementById('lightbox-img').src = currentGallery[currentIndex];
+  }
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') closeLightbox();
+    if (e.key === 'ArrowLeft') shiftLightbox(-1);
+    if (e.key === 'ArrowRight') shiftLightbox(1);
+  });
+</script>
+</body>
+</html>
